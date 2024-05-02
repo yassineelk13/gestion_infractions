@@ -27,7 +27,7 @@ public class Infractions extends javax.swing.JFrame {
     public Infractions(int id) {
         initComponents();
         showTableData(id);
-        payerbtn.setVisible(false);
+        //payerbtn.setVisible(false);
         this.id_v = id;
     }
     
@@ -102,7 +102,6 @@ public class Infractions extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        payerbtn = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         matrilbl = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -157,16 +156,6 @@ public class Infractions extends javax.swing.JFrame {
         jLabel2.setText("Bonjour Autorité");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(29, 88, 251, 32));
 
-        payerbtn.setBackground(new java.awt.Color(0, 204, 102));
-        payerbtn.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
-        payerbtn.setText("Payer");
-        payerbtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                payerbtnActionPerformed(evt);
-            }
-        });
-        getContentPane().add(payerbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 160, 100, 40));
-
         jLabel4.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         jLabel4.setText("Matricule :");
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 160, 70, 30));
@@ -212,7 +201,7 @@ public class Infractions extends javax.swing.JFrame {
                 ajoutinfrbtnActionPerformed(evt);
             }
         });
-        getContentPane().add(ajoutinfrbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 160, -1, 40));
+        getContentPane().add(ajoutinfrbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 160, -1, 40));
 
         jLabel6.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         jLabel6.setText("Propriétaire d'infraction :");
@@ -229,10 +218,6 @@ public class Infractions extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void payerbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_payerbtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_payerbtnActionPerformed
-
     private void ajoutinfrbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ajoutinfrbtnActionPerformed
         // TODO add your handling code here:
        
@@ -245,9 +230,9 @@ public class Infractions extends javax.swing.JFrame {
     private void infrtableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_infrtableMouseClicked
         // TODO add your handling code here:
         if(evt.getButton() == MouseEvent.BUTTON1){
-            payerbtn.setVisible(true);
+           // payerbtn.setVisible(true);
         }else if(evt.getButton() == MouseEvent.BUTTON3){
-            payerbtn.setVisible(false);
+            //payerbtn.setVisible(false);
             infrtable.clearSelection();
             
         }
@@ -276,7 +261,6 @@ public class Infractions extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel matrilbl;
-    private javax.swing.JButton payerbtn;
     private javax.swing.JLabel proprlbl;
     // End of variables declaration//GEN-END:variables
 }
