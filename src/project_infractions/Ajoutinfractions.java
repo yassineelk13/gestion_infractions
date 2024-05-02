@@ -86,8 +86,8 @@ public class Ajoutinfractions extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jButton3 = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
+        logoutbtn = new javax.swing.JButton();
+        homebtn = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         proprlbl = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -108,35 +108,41 @@ public class Ajoutinfractions extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(0, 204, 204));
 
-        jButton3.setBackground(new java.awt.Color(255, 51, 51));
-        jButton3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton3.setText("Deconnection");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        logoutbtn.setBackground(new java.awt.Color(255, 51, 51));
+        logoutbtn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        logoutbtn.setText("Deconnection");
+        logoutbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                logoutbtnActionPerformed(evt);
             }
         });
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel3.setText("Monsieur Autorité");
+        homebtn.setBackground(new java.awt.Color(0, 204, 102));
+        homebtn.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        homebtn.setText("Home");
+        homebtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                homebtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 487, Short.MAX_VALUE)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33)
-                .addComponent(jButton3))
+                .addGap(0, 527, Short.MAX_VALUE)
+                .addComponent(homebtn, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(logoutbtn))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)))
+                    .addComponent(logoutbtn, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
+                    .addComponent(homebtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -211,9 +217,11 @@ public class Ajoutinfractions extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void logoutbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutbtnActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+        new Login().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_logoutbtnActionPerformed
 
     private void ajoutbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ajoutbtnActionPerformed
         // TODO add your handling code here:
@@ -235,16 +243,7 @@ public class Ajoutinfractions extends javax.swing.JFrame {
                try {
             conn = DriverManager.getConnection("jdbc:mysql://localhost/project_infractions", "root", "");
             System.out.println("Connected!");
-            /*
-            String sql = "SELECT id FROM typeinfraction where nom='"+type_inf+"'";
-            stmt = conn.prepareStatement(sql);
-            ResultSet rs = stmt.executeQuery();
-            int id_inf = 0;
-            while(rs.next()){
-                id_inf =rs.getInt("id");
-            }
-            */
-            
+      
             
             String query = "INSERT INTO infraction(date_infraction, heure_infraction,lieu,montant,statut_paiement,conducteur_id,vehicule_id,type_infraction_id)VALUES(?, ?,?, ?,?, ?,?, ?)";
             PreparedStatement pstmt = conn.prepareStatement(query);
@@ -273,6 +272,13 @@ public class Ajoutinfractions extends javax.swing.JFrame {
     private void lieufldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lieufldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_lieufldActionPerformed
+
+    private void homebtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homebtnActionPerformed
+        // TODO add your handling code here:
+        new InterAutorite().setVisible(true);
+        this.dispose();
+
+    }//GEN-LAST:event_homebtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -311,9 +317,8 @@ public class Ajoutinfractions extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ajoutbtn;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton homebtn;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -323,6 +328,7 @@ public class Ajoutinfractions extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JTextField lieufld;
     private javax.swing.JComboBox<String> listinfrac;
+    private javax.swing.JButton logoutbtn;
     private javax.swing.JLabel matrlbl;
     private javax.swing.JSpinner montfld;
     private javax.swing.JLabel proprlbl;

@@ -83,10 +83,10 @@ public class InterAutorite extends javax.swing.JFrame {
         rechefld = new javax.swing.JTextField();
         rechebtn = new javax.swing.JButton();
         loginuser = new javax.swing.JLabel();
+        infoinfractbtn = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         logoutbtn = new javax.swing.JButton();
-        loginlbl = new javax.swing.JLabel();
-        infoinfractbtn = new javax.swing.JButton();
+        homebtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setSize(new java.awt.Dimension(787, 477));
@@ -153,6 +153,16 @@ public class InterAutorite extends javax.swing.JFrame {
         loginuser.setText("Bonjour Autorité");
         getContentPane().add(loginuser, new org.netbeans.lib.awtextra.AbsoluteConstraints(29, 88, 251, 32));
 
+        infoinfractbtn.setBackground(new java.awt.Color(0, 204, 102));
+        infoinfractbtn.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        infoinfractbtn.setText("voir les infractions");
+        infoinfractbtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                infoinfractbtnActionPerformed(evt);
+            }
+        });
+        getContentPane().add(infoinfractbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 300, 150, 50));
+
         jPanel1.setBackground(new java.awt.Color(0, 204, 204));
 
         logoutbtn.setBackground(new java.awt.Color(255, 51, 51));
@@ -164,39 +174,35 @@ public class InterAutorite extends javax.swing.JFrame {
             }
         });
 
-        loginlbl.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        loginlbl.setText("Monsieur Autorité");
+        homebtn.setBackground(new java.awt.Color(0, 204, 102));
+        homebtn.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        homebtn.setText("Home");
+        homebtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                homebtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 488, Short.MAX_VALUE)
-                .addComponent(loginlbl, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33)
-                .addComponent(logoutbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 527, Short.MAX_VALUE)
+                .addComponent(homebtn, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(logoutbtn))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(loginlbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(logoutbtn, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)))
+                    .addComponent(logoutbtn, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
+                    .addComponent(homebtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 788, -1));
-
-        infoinfractbtn.setBackground(new java.awt.Color(0, 204, 102));
-        infoinfractbtn.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
-        infoinfractbtn.setText("voir les infractions");
-        infoinfractbtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                infoinfractbtnActionPerformed(evt);
-            }
-        });
-        getContentPane().add(infoinfractbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 300, 150, 50));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -208,10 +214,6 @@ public class InterAutorite extends javax.swing.JFrame {
     private void rechefldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rechefldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_rechefldActionPerformed
-
-    private void logoutbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutbtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_logoutbtnActionPerformed
 
   
     private void infoinfractbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_infoinfractbtnActionPerformed
@@ -256,6 +258,18 @@ public class InterAutorite extends javax.swing.JFrame {
         
     }//GEN-LAST:event_proprtableMouseClicked
 
+    private void logoutbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutbtnActionPerformed
+        // TODO add your handling code here:
+        new Login().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_logoutbtnActionPerformed
+
+    private void homebtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homebtnActionPerformed
+        // TODO add your handling code here:
+        new InterAutorite().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_homebtnActionPerformed
+
   
     public static void main(String args[]) {
         
@@ -267,10 +281,10 @@ public class InterAutorite extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton homebtn;
     private javax.swing.JButton infoinfractbtn;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel loginlbl;
     private javax.swing.JLabel loginuser;
     private javax.swing.JButton logoutbtn;
     private javax.swing.JTable proprtable;
