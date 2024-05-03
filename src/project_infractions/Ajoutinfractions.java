@@ -104,12 +104,14 @@ public class Ajoutinfractions extends javax.swing.JFrame {
         montfld = new javax.swing.JSpinner();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setSize(new java.awt.Dimension(785, 455));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(0, 204, 204));
+        jPanel1.setBackground(new java.awt.Color(0, 0, 0));
 
         logoutbtn.setBackground(new java.awt.Color(255, 51, 51));
         logoutbtn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        logoutbtn.setForeground(new java.awt.Color(255, 255, 255));
         logoutbtn.setText("Deconnection");
         logoutbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -119,6 +121,7 @@ public class Ajoutinfractions extends javax.swing.JFrame {
 
         homebtn.setBackground(new java.awt.Color(0, 204, 102));
         homebtn.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        homebtn.setForeground(new java.awt.Color(255, 255, 255));
         homebtn.setText("Home");
         homebtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -164,6 +167,7 @@ public class Ajoutinfractions extends javax.swing.JFrame {
 
         ajoutbtn.setBackground(new java.awt.Color(0, 204, 0));
         ajoutbtn.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        ajoutbtn.setForeground(new java.awt.Color(255, 255, 255));
         ajoutbtn.setText("Ajouter");
         ajoutbtn.setOpaque(true);
         ajoutbtn.addActionListener(new java.awt.event.ActionListener() {
@@ -212,7 +216,7 @@ public class Ajoutinfractions extends javax.swing.JFrame {
         montfld.setToolTipText("");
         jPanel2.add(montfld, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 280, 150, 40));
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 740, 400));
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 40, 800, 420));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

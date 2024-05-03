@@ -4,8 +4,6 @@ package project_infractions;
 
 public class InterAdmin extends javax.swing.JFrame {
 
-   
-    
     public InterAdmin() {
         initComponents();
     }
@@ -17,19 +15,21 @@ public class InterAdmin extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         logoutbtn = new javax.swing.JButton();
-        loginlbl = new javax.swing.JLabel();
+        homebtn = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         voitureslbl = new javax.swing.JLabel();
         agentslbl = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setSize(new java.awt.Dimension(787, 477));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(0, 204, 204));
+        jPanel1.setBackground(new java.awt.Color(0, 0, 0));
 
         logoutbtn.setBackground(new java.awt.Color(255, 51, 51));
         logoutbtn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        logoutbtn.setForeground(new java.awt.Color(255, 255, 255));
         logoutbtn.setText("Deconnection");
         logoutbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -37,26 +37,32 @@ public class InterAdmin extends javax.swing.JFrame {
             }
         });
 
-        loginlbl.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        loginlbl.setText("Monsieur Autorité");
+        homebtn.setBackground(new java.awt.Color(0, 204, 102));
+        homebtn.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        homebtn.setForeground(new java.awt.Color(255, 255, 255));
+        homebtn.setText("Home");
+        homebtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                homebtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 488, Short.MAX_VALUE)
-                .addComponent(loginlbl, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33)
+                .addGap(0, 528, Short.MAX_VALUE)
+                .addComponent(homebtn, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(logoutbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(loginlbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(logoutbtn, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)))
+                .addComponent(logoutbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(homebtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 788, -1));
@@ -69,6 +75,11 @@ public class InterAdmin extends javax.swing.JFrame {
         voitureslbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         voitureslbl.setText("Voitures");
         voitureslbl.setOpaque(true);
+        voitureslbl.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                voitureslblMouseClicked(evt);
+            }
+        });
 
         agentslbl.setBackground(new java.awt.Color(255, 102, 102));
         agentslbl.setFont(new java.awt.Font("Calibri", 1, 36)); // NOI18N
@@ -76,6 +87,11 @@ public class InterAdmin extends javax.swing.JFrame {
         agentslbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         agentslbl.setText("Agents");
         agentslbl.setOpaque(true);
+        agentslbl.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                agentslblMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -101,14 +117,34 @@ public class InterAdmin extends javax.swing.JFrame {
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 790, 70));
 
         jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\hp\\Desktop\\bginf.png")); // NOI18N
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 760, 300));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 790, 360));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void logoutbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutbtnActionPerformed
         // TODO add your handling code here:
+        new Login().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_logoutbtnActionPerformed
+
+    private void homebtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homebtnActionPerformed
+        // TODO add your handling code here:
+        new InterAdmin().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_homebtnActionPerformed
+
+    private void agentslblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_agentslblMouseClicked
+        // TODO add your handling code here:
+        new Infoagents().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_agentslblMouseClicked
+
+    private void voitureslblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_voitureslblMouseClicked
+        // TODO add your handling code here:
+        new Infovoitures().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_voitureslblMouseClicked
 
  
     public static void main(String args[]) {
@@ -145,10 +181,10 @@ public class InterAdmin extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel agentslbl;
+    private javax.swing.JButton homebtn;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JLabel loginlbl;
     private javax.swing.JButton logoutbtn;
     private javax.swing.JLabel voitureslbl;
     // End of variables declaration//GEN-END:variables

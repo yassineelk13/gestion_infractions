@@ -109,6 +109,7 @@ public class Infractions extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         logoutbtn = new javax.swing.JButton();
         homebtn = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
 
         jLabel1.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jLabel1.setText("Bonjour Autorité");
@@ -169,6 +170,7 @@ public class Infractions extends javax.swing.JFrame {
 
         ajoutinfrbtn1.setBackground(new java.awt.Color(0, 204, 102));
         ajoutinfrbtn1.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        ajoutinfrbtn1.setForeground(new java.awt.Color(255, 255, 255));
         ajoutinfrbtn1.setText("+Ajouter nouvelle infraction");
         ajoutinfrbtn1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -177,10 +179,11 @@ public class Infractions extends javax.swing.JFrame {
         });
         getContentPane().add(ajoutinfrbtn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 160, -1, 40));
 
-        jPanel1.setBackground(new java.awt.Color(0, 204, 204));
+        jPanel1.setBackground(new java.awt.Color(0, 0, 0));
 
         logoutbtn.setBackground(new java.awt.Color(255, 51, 51));
         logoutbtn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        logoutbtn.setForeground(new java.awt.Color(255, 255, 255));
         logoutbtn.setText("Deconnection");
         logoutbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -190,6 +193,7 @@ public class Infractions extends javax.swing.JFrame {
 
         homebtn.setBackground(new java.awt.Color(0, 204, 102));
         homebtn.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        homebtn.setForeground(new java.awt.Color(255, 255, 255));
         homebtn.setText("Home");
         homebtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -217,6 +221,21 @@ public class Infractions extends javax.swing.JFrame {
         );
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 790, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 430, Short.MAX_VALUE)
+        );
+
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 790, 430));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -270,6 +289,7 @@ public class Infractions extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton logoutbtn;
     private javax.swing.JLabel matrilbl;

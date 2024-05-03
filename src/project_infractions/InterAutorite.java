@@ -58,16 +58,9 @@ public class InterAutorite extends javax.swing.JFrame {
                 note_permis = rs.getInt("note_permis");
                 id_con = rs.getInt("conducteur_id");
                 model.addRow(new Object[]{Matricule, CIN, nom, marque, modele, note_permis});
-                i++;
+           
             }
-            if (i < 1) {
-                JOptionPane.showMessageDialog(null, "No Record Found", "Error", JOptionPane.ERROR_MESSAGE);
-            }
-            if (i == 1) {
-                System.out.println(i + " Record Found");
-            } else {
-                System.out.println(i + " Records Found");
-            }
+         
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
@@ -87,6 +80,7 @@ public class InterAutorite extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         logoutbtn = new javax.swing.JButton();
         homebtn = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setSize(new java.awt.Dimension(787, 477));
@@ -141,6 +135,7 @@ public class InterAutorite extends javax.swing.JFrame {
 
         rechebtn.setBackground(new java.awt.Color(0, 204, 102));
         rechebtn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        rechebtn.setForeground(new java.awt.Color(255, 255, 255));
         rechebtn.setText("Rechercher");
         rechebtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -155,6 +150,7 @@ public class InterAutorite extends javax.swing.JFrame {
 
         infoinfractbtn.setBackground(new java.awt.Color(0, 204, 102));
         infoinfractbtn.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        infoinfractbtn.setForeground(new java.awt.Color(255, 255, 255));
         infoinfractbtn.setText("voir les infractions");
         infoinfractbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -163,10 +159,11 @@ public class InterAutorite extends javax.swing.JFrame {
         });
         getContentPane().add(infoinfractbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 300, 150, 50));
 
-        jPanel1.setBackground(new java.awt.Color(0, 204, 204));
+        jPanel1.setBackground(new java.awt.Color(0, 0, 0));
 
         logoutbtn.setBackground(new java.awt.Color(255, 51, 51));
         logoutbtn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        logoutbtn.setForeground(new java.awt.Color(255, 255, 255));
         logoutbtn.setText("Deconnection");
         logoutbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -176,6 +173,7 @@ public class InterAutorite extends javax.swing.JFrame {
 
         homebtn.setBackground(new java.awt.Color(0, 204, 102));
         homebtn.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        homebtn.setForeground(new java.awt.Color(255, 255, 255));
         homebtn.setText("Home");
         homebtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -204,60 +202,25 @@ public class InterAutorite extends javax.swing.JFrame {
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 790, Short.MAX_VALUE)
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 420, Short.MAX_VALUE)
+        );
+
+        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 790, 420));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void rechebtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rechebtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_rechebtnActionPerformed
-
-    private void rechefldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rechefldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_rechefldActionPerformed
-
   
-    private void infoinfractbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_infoinfractbtnActionPerformed
-        // TODO add your handling code here:
-        System.out.println("clicked" );
-        int index = proprtable.getSelectedRow();
-        String mat =model.getValueAt(index, 0).toString();
-        System.out.println( mat );
-        
-         try {
-            conn = DriverManager.getConnection("jdbc:mysql://localhost/project_infractions", "root", "");
-            System.out.println("Connected!");
-            String sql = "SELECT id,conducteur_id FROM vehicule where plaque_immatriculation='"+mat+"'";
-            stmt = conn.prepareStatement(sql);
-            ResultSet rs = stmt.executeQuery();
-            int idd = 0;
-            int con_id = 0;
-            while(rs.next()){
-                idd =rs.getInt("id");
-                con_id =rs.getInt("conducteur_id");
-            }
-            
-            new Infractions(idd).setVisible(true);
-            this.dispose();
-            
-            
-           // System.out.println(lieu);
-            } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-        }
-    }//GEN-LAST:event_infoinfractbtnActionPerformed
-
-    private void proprtableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_proprtableMouseClicked
-        // TODO add your handling code here:
-        if(evt.getButton() == MouseEvent.BUTTON1){
-            infoinfractbtn.setVisible(true);
-            
-        }else if(evt.getButton() == MouseEvent.BUTTON3){
-            infoinfractbtn.setVisible(false);
-            proprtable.clearSelection();
-        }
-        
-    }//GEN-LAST:event_proprtableMouseClicked
-
     private void logoutbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutbtnActionPerformed
         // TODO add your handling code here:
         new Login().setVisible(true);
@@ -269,6 +232,55 @@ public class InterAutorite extends javax.swing.JFrame {
         new InterAutorite().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_homebtnActionPerformed
+
+    private void rechebtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rechebtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rechebtnActionPerformed
+
+    private void infoinfractbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_infoinfractbtnActionPerformed
+        // TODO add your handling code here:
+        System.out.println("clicked" );
+        int index = proprtable.getSelectedRow();
+        String mat =model.getValueAt(index, 0).toString();
+        System.out.println( mat );
+
+        try {
+            conn = DriverManager.getConnection("jdbc:mysql://localhost/project_infractions", "root", "");
+            System.out.println("Connected!");
+            String sql = "SELECT id,conducteur_id FROM vehicule where plaque_immatriculation='"+mat+"'";
+            stmt = conn.prepareStatement(sql);
+            ResultSet rs = stmt.executeQuery();
+            int idd = 0;
+            int con_id = 0;
+            while(rs.next()){
+                idd =rs.getInt("id");
+                con_id =rs.getInt("conducteur_id");
+            }
+
+            new Infractions(idd).setVisible(true);
+            this.dispose();
+
+            // System.out.println(lieu);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_infoinfractbtnActionPerformed
+
+    private void proprtableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_proprtableMouseClicked
+        // TODO add your handling code here:
+        if(evt.getButton() == MouseEvent.BUTTON1){
+            infoinfractbtn.setVisible(true);
+
+        }else if(evt.getButton() == MouseEvent.BUTTON3){
+            infoinfractbtn.setVisible(false);
+            proprtable.clearSelection();
+        }
+
+    }//GEN-LAST:event_proprtableMouseClicked
+
+    private void rechefldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rechefldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rechefldActionPerformed
 
   
     public static void main(String args[]) {
@@ -284,6 +296,7 @@ public class InterAutorite extends javax.swing.JFrame {
     private javax.swing.JButton homebtn;
     private javax.swing.JButton infoinfractbtn;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel loginuser;
     private javax.swing.JButton logoutbtn;
