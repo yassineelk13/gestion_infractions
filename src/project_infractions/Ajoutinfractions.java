@@ -249,7 +249,7 @@ public class Ajoutinfractions extends javax.swing.JFrame {
             System.out.println("Connected!");
       
             
-            String query = "INSERT INTO infraction(date_infraction, heure_infraction,lieu,montant,statut_paiement,conducteur_id,vehicule_id,type_infraction_id)VALUES(?, ?,?, ?,?, ?,?, ?)";
+            String query = "INSERT INTO infraction(date_infraction, heure_infraction,lieu,montant,statut_paiement,vehicule_id,type_infraction_id)VALUES(?, ?,?,?, ?,?, ?)";
             PreparedStatement pstmt = conn.prepareStatement(query);
             pstmt.setDate(1,sqlDate);
             pstmt.setTime(2,sqlheure);
@@ -257,8 +257,7 @@ public class Ajoutinfractions extends javax.swing.JFrame {
             pstmt.setDouble(4,montant);
             pstmt.setString(5,statut);
             pstmt.setInt(6,getId());
-            pstmt.setInt(7,getId());
-            pstmt.setInt(8,id_inf);
+            pstmt.setInt(7,id_inf);
             pstmt.executeUpdate();
             
             new Infractions(getId()).setVisible(true);

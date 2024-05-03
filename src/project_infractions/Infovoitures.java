@@ -207,6 +207,11 @@ public class Infovoitures extends javax.swing.JFrame {
         ajoubtn.setForeground(new java.awt.Color(255, 255, 255));
         ajoubtn.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         ajoubtn.setText("Ajouter");
+        ajoubtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ajoubtnMouseClicked(evt);
+            }
+        });
         jPanel2.add(ajoubtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 80, 110, 40));
 
         modbtn.setEditable(false);
@@ -215,6 +220,11 @@ public class Infovoitures extends javax.swing.JFrame {
         modbtn.setForeground(new java.awt.Color(255, 255, 255));
         modbtn.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         modbtn.setText("Modifier");
+        modbtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                modbtnMouseClicked(evt);
+            }
+        });
         modbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 modbtnActionPerformed(evt);
@@ -267,6 +277,32 @@ public class Infovoitures extends javax.swing.JFrame {
 
     private void modbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modbtnActionPerformed
         // TODO add your handling code here:
+         int indice = listvoiture.getSelectedRow(); 
+        String matricule = listvoiture.getModel().getValueAt(indice, 0).toString();
+        try {
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/project_infractions", "root", "");
+            System.out.println("Connected!");
+      
+            String query = "select id FROM vehicule WHERE plaque_immatriculation='"+matricule+"'  ";
+            PreparedStatement pstmt = conn.prepareStatement(query);
+            ResultSet rs = pstmt.executeQuery();
+            
+            int id = 0;
+        
+            while (rs.next()) {
+                
+                id = rs.getInt("id");        
+                
+            }
+            
+            
+            new Ajoutvoitures(id,"modif").setVisible(true);
+            this.dispose();
+            
+             } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        
     }//GEN-LAST:event_modbtnActionPerformed
 
     private void supbtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_supbtnMouseClicked
@@ -323,6 +359,42 @@ public class Infovoitures extends javax.swing.JFrame {
             listvoiture.clearSelection();
         }
     }//GEN-LAST:event_listvoitureMouseClicked
+
+    private void modbtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_modbtnMouseClicked
+        // TODO add your handling code here:
+          int indice = listvoiture.getSelectedRow(); 
+        String matricule = listvoiture.getModel().getValueAt(indice, 0).toString();
+        try {
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/project_infractions", "root", "");
+            System.out.println("Connected!");
+      
+            String query = "select id FROM vehicule WHERE plaque_immatriculation='"+matricule+"'  ";
+            PreparedStatement pstmt = conn.prepareStatement(query);
+            ResultSet rs = pstmt.executeQuery();
+            
+            int id = 0;
+        
+            while (rs.next()) {
+                
+                id = rs.getInt("id");        
+                
+            }
+            
+            
+            new Ajoutvoitures(id,"modif").setVisible(true);
+            this.dispose();
+            
+             } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        
+    }//GEN-LAST:event_modbtnMouseClicked
+
+    private void ajoubtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ajoubtnMouseClicked
+        // TODO add your handling code here:
+          new Ajoutvoitures(1,"ajout").setVisible(true);
+          this.dispose();
+    }//GEN-LAST:event_ajoubtnMouseClicked
 
     
     public static void main(String args[]) {
