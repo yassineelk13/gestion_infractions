@@ -127,7 +127,7 @@ private boolean validatePaymentDetails() {
                 loginbtn2ActionPerformed(evt);
             }
         });
-        jPanel2.add(loginbtn2, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 20, 118, 44));
+        jPanel2.add(loginbtn2, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 20, 118, 44));
 
         homebtn.setBackground(new java.awt.Color(0, 204, 102));
         homebtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -139,7 +139,7 @@ private boolean validatePaymentDetails() {
                 homebtnActionPerformed(evt);
             }
         });
-        jPanel2.add(homebtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 20, 118, 44));
+        jPanel2.add(homebtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 20, 118, 44));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 785, 80));
 
@@ -177,7 +177,7 @@ private boolean validatePaymentDetails() {
                 printbtnActionPerformed(evt);
             }
         });
-        jPanel1.add(printbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 390, 140, 40));
+        jPanel1.add(printbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 370, 140, 40));
 
         dateexpfld.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         dateexpfld.addActionListener(new java.awt.event.ActionListener() {
@@ -196,7 +196,7 @@ private boolean validatePaymentDetails() {
         printxt.setText("montant : 300");
         jScrollPane1.setViewportView(printxt);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 126, -1, 260));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 90, -1, 270));
 
         payerbtn.setBackground(new java.awt.Color(0, 153, 51));
         payerbtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N

@@ -5,7 +5,12 @@ import java.sql.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import javax.swing.JOptionPane;
+import javax.swing.RowFilter;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 
 
 
@@ -13,7 +18,7 @@ public class Infoinfractions extends javax.swing.JFrame {
     Connection conn = null;
     PreparedStatement stmt = null;
      public String[] columnNames = {"Id","type d'infraction","Date","heure","lieu","montant", "statut de paiement"};
-    
+    TableRowSorter<TableModel> rowSorter;
     DefaultTableModel model = new DefaultTableModel();
     public int id_veh;
     public int id_inf;
@@ -23,8 +28,43 @@ public class Infoinfractions extends javax.swing.JFrame {
         this.id_veh = id;
         payerbtn.setVisible(false);
         showTableData(id);
+        initializeSearch();
     }
     
+        private void initializeSearch() {
+        // Création d'un rowSorter pour le modèle de tableau
+        rowSorter = new TableRowSorter<>(infrtable.getModel());
+        infrtable.setRowSorter(rowSorter);
+        
+        // Ajout d'un DocumentListener au champ de recherche
+        rechefld.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                String text = rechefld.getText();
+                if (text.trim().length() == 0) {
+                    rowSorter.setRowFilter(null);
+                } else {
+                    rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + text));
+                }
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                String text = rechefld.getText();
+                if (text.trim().length() == 0) {
+                    rowSorter.setRowFilter(null);
+                } else {
+                    rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + text));
+                }
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                // Ne sera pas utilisé pour les champs de texte non éditables
+            }
+        });
+    }
+
     
     public void showTableData(int idd) {
         
@@ -109,6 +149,8 @@ public class Infoinfractions extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         infrtable = new javax.swing.JTable();
         payerbtn = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        rechefld = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setSize(new java.awt.Dimension(785, 455));
@@ -134,7 +176,7 @@ public class Infoinfractions extends javax.swing.JFrame {
                 homebtnActionPerformed(evt);
             }
         });
-        jPanel2.add(homebtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 20, 118, 44));
+        jPanel2.add(homebtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 20, 118, 44));
 
         loginbtn2.setBackground(new java.awt.Color(0, 153, 153));
         loginbtn2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -145,7 +187,7 @@ public class Infoinfractions extends javax.swing.JFrame {
                 loginbtn2ActionPerformed(evt);
             }
         });
-        jPanel2.add(loginbtn2, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 20, 118, 44));
+        jPanel2.add(loginbtn2, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 20, 118, 44));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 785, 80));
 
@@ -201,7 +243,7 @@ public class Infoinfractions extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(infrtable);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 200, 750, 250));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, 750, 230));
 
         payerbtn.setBackground(new java.awt.Color(0, 153, 0));
         payerbtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -212,7 +254,19 @@ public class Infoinfractions extends javax.swing.JFrame {
                 payerbtnActionPerformed(evt);
             }
         });
-        jPanel1.add(payerbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 150, 100, 40));
+        jPanel1.add(payerbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 170, 100, 40));
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel5.setText("Rechercher :");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, 100, 30));
+
+        rechefld.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        rechefld.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rechefldActionPerformed(evt);
+            }
+        });
+        jPanel1.add(rechefld, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 180, 170, 31));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -262,6 +316,10 @@ public class Infoinfractions extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_loginbtn2ActionPerformed
 
+    private void rechefldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rechefldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rechefldActionPerformed
+
     
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -301,6 +359,7 @@ public class Infoinfractions extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -310,5 +369,6 @@ public class Infoinfractions extends javax.swing.JFrame {
     private javax.swing.JLabel matrlbl;
     private javax.swing.JLabel nomconlbl;
     private javax.swing.JButton payerbtn;
+    private javax.swing.JTextField rechefld;
     // End of variables declaration//GEN-END:variables
 }

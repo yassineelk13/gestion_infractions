@@ -14,28 +14,70 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 
-
-/**
- *
- * @author hp
- */
 public class Ajoutinfractions extends javax.swing.JFrame {
 
     Connection conn = null;
     PreparedStatement stmt = null;
     DefaultTableModel model = new DefaultTableModel();
-    public int id;
+    public int id_v;
+    public String mode;
+    public int id_inf;
     
-    public Ajoutinfractions(int id) {
+    
+    public Ajoutinfractions(int id,int id_inf,String str) {
         initComponents();
-        this.id = id;
+        this.id_v = id;
+        this.mode = str;
+        this.id_inf = id_inf;
         System.out.println(id);
         getVehicule(id);
         remplirComboBox();
+        
+        
+             if(str.equals("modif")){
+                  
+            modelbl.setText("Modifier infraction :");
+            ajoutbtn.setText("Modifier");
+               try {
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/project_infractions", "root", "");
+            System.out.println("Connected!");
+      
+               String query1 = "SELECT typeinfraction.nom ,lieu,montant FROM infraction inner join typeinfraction on typeinfraction.id = infraction.type_infraction_id where infraction.id='"+this.id_inf+"'";
+         
+            //String query1 = "SELECT plaque_immatriculation,CIN,annee,couleur,prenom,adresse,nom,marque,modele,note_permis FROM vehicule INNER JOIN conducteur ON vehicule.conducteur_id = conducteur.id where vehicule.id='"+this.id_vehicule+"'  ";
+            PreparedStatement pstmt1 = conn.prepareStatement(query1);
+            ResultSet rs = pstmt1.executeQuery();
+            
+            
+            String type_inf = "";
+            String lieu = "";
+            double montant = 0;
+            
+            
+            while (rs.next()) {
+                
+                type_inf = rs.getString("nom");
+                lieu = rs.getString("lieu");
+                montant = rs.getDouble("montant");
+           
+            }
+            
+           
+            
+           listinfrac.setSelectedItem(""+type_inf);
+           lieufld.setText(lieu);
+           montfld.setValue(montant);
+            
+            
+            } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        
     }
+             }
     
     public int getId(){
-        return this.id;
+        return this.id_v;
     }
     
     public void remplirComboBox(){
@@ -96,7 +138,7 @@ public class Ajoutinfractions extends javax.swing.JFrame {
         ajoutbtn = new javax.swing.JButton();
         res = new javax.swing.JLabel();
         listinfrac = new javax.swing.JComboBox<>();
-        jLabel2 = new javax.swing.JLabel();
+        modelbl = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         matrlbl = new javax.swing.JLabel();
@@ -175,9 +217,9 @@ public class Ajoutinfractions extends javax.swing.JFrame {
         listinfrac.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jPanel2.add(listinfrac, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 190, 230, 40));
 
-        jLabel2.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
-        jLabel2.setText("Ajouter infraction :");
-        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 60, 289, 42));
+        modelbl.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
+        modelbl.setText("Ajouter infraction :");
+        jPanel2.add(modelbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 60, 289, 42));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setText("type d'infraction :");
@@ -222,7 +264,9 @@ public class Ajoutinfractions extends javax.swing.JFrame {
 
     private void ajoutbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ajoutbtnActionPerformed
         // TODO add your handling code here:
-        String type_inf = listinfrac.getSelectedItem().toString();
+        
+        if(this.mode.equals("ajout")){
+            String type_inf = listinfrac.getSelectedItem().toString();
         String lieu = lieufld.getText();
         //Double montant = Double.parseDouble(montantfld.getText().toString());
         Double montant = Double.parseDouble(montfld.getValue().toString());
@@ -263,6 +307,49 @@ public class Ajoutinfractions extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
           }
+        }else{
+            
+            
+            String type_inf = listinfrac.getSelectedItem().toString();
+            String lieu = lieufld.getText();
+            //Double montant = Double.parseDouble(montantfld.getText().toString());
+            Double montant = Double.parseDouble(montfld.getValue().toString());
+
+            int id_type_inf = listinfrac.getSelectedIndex();
+            if(type_inf.equals("") || lieu.equals("") || montant == 0){
+                    System.out.println(listinfrac.getSelectedIndex());
+                    JOptionPane.showMessageDialog(this, "veuillez replissez les champs !", "champs vides", JOptionPane.ERROR_MESSAGE);
+            }
+              
+            else{
+               try {
+            conn = DriverManager.getConnection("jdbc:mysql://localhost/project_infractions", "root", "");
+            System.out.println("Connected!");
+      
+            
+            String query = "UPDATE infraction SET type_infraction_id = ?,montant = ?,lieu = ? WHERE id ='"+this.id_inf+"'  ";
+            PreparedStatement pstmt = conn.prepareStatement(query);
+            pstmt.setInt(1,id_type_inf);
+            pstmt.setDouble(2,montant);
+            pstmt.setString(3,lieu);
+           
+            pstmt.executeUpdate();
+            
+            JOptionPane.showMessageDialog(this, "l'infraction a été modifié avec succes !", "success", JOptionPane.CLOSED_OPTION);
+
+            new Infractions(getId()).setVisible(true);
+            this.dispose();
+            
+            
+            } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+          }
+            
+            
+            
+        }
+        
        
     
     }//GEN-LAST:event_ajoutbtnActionPerformed
@@ -317,7 +404,6 @@ public class Ajoutinfractions extends javax.swing.JFrame {
     private javax.swing.JButton ajoutbtn;
     private javax.swing.JButton homebtn;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -330,6 +416,7 @@ public class Ajoutinfractions extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> listinfrac;
     private javax.swing.JButton logoutbtn;
     private javax.swing.JLabel matrlbl;
+    private javax.swing.JLabel modelbl;
     private javax.swing.JSpinner montfld;
     private javax.swing.JLabel proprlbl;
     private javax.swing.JLabel res;

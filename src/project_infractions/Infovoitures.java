@@ -9,20 +9,67 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
+import javax.swing.RowFilter;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 
 
 public class Infovoitures extends javax.swing.JFrame {
 
+    TableRowSorter<TableModel> rowSorter;
     public int id_v;
+    
+    
     public Infovoitures() {
         initComponents();
         showTableData();
         supbtn.setVisible(false);
         modbtn.setVisible(false);
+        initializeSearch();
+    }
+    
+    
+    
+    
+          private void initializeSearch() {
+        // Création d'un rowSorter pour le modèle de tableau
+        rowSorter = new TableRowSorter<>(listvoiture.getModel());
+        listvoiture.setRowSorter(rowSorter);
+        
+        // Ajout d'un DocumentListener au champ de recherche
+        rechefld.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                String text = rechefld.getText();
+                if (text.trim().length() == 0) {
+                    rowSorter.setRowFilter(null);
+                } else {
+                    rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + text));
+                }
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                String text = rechefld.getText();
+                if (text.trim().length() == 0) {
+                    rowSorter.setRowFilter(null);
+                } else {
+                    rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + text));
+                }
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                // Ne sera pas utilisé pour les champs de texte non éditables
+            }
+        });
     }
 
-        public void showTableData() {
+
+    public void showTableData() {
         
          try {
                 String[] columnNames = {"Matricule","Marque","Modèle","année","Conducteur"};
@@ -86,6 +133,8 @@ public class Infovoitures extends javax.swing.JFrame {
         ajoubtn = new javax.swing.JTextField();
         modbtn = new javax.swing.JTextField();
         supbtn = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        rechefld = new javax.swing.JTextField();
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setText("liste d'Agents :");
@@ -167,7 +216,7 @@ public class Infovoitures extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel2.setText("liste de voitures:");
-        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 60, 206, 47));
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 50, 206, 47));
 
         listvoiture.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         listvoiture.setModel(new javax.swing.table.DefaultTableModel(
@@ -189,7 +238,7 @@ public class Infovoitures extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(listvoiture);
 
-        jPanel2.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 130, 670, 290));
+        jPanel2.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, 670, 270));
 
         ajoubtn.setEditable(false);
         ajoubtn.setBackground(new java.awt.Color(51, 153, 0));
@@ -207,7 +256,7 @@ public class Infovoitures extends javax.swing.JFrame {
                 ajoubtnActionPerformed(evt);
             }
         });
-        jPanel2.add(ajoubtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 80, 110, 40));
+        jPanel2.add(ajoubtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 100, 110, 40));
 
         modbtn.setEditable(false);
         modbtn.setBackground(new java.awt.Color(51, 153, 0));
@@ -225,7 +274,7 @@ public class Infovoitures extends javax.swing.JFrame {
                 modbtnActionPerformed(evt);
             }
         });
-        jPanel2.add(modbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 80, 110, 40));
+        jPanel2.add(modbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 100, 110, 40));
 
         supbtn.setEditable(false);
         supbtn.setBackground(new java.awt.Color(51, 153, 0));
@@ -243,7 +292,19 @@ public class Infovoitures extends javax.swing.JFrame {
                 supbtnActionPerformed(evt);
             }
         });
-        jPanel2.add(supbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 80, 120, 40));
+        jPanel2.add(supbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 100, 120, 40));
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel4.setText("Rechercher :");
+        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 110, 100, 30));
+
+        rechefld.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        rechefld.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rechefldActionPerformed(evt);
+            }
+        });
+        jPanel2.add(rechefld, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 110, 170, 31));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 790, 440));
 
@@ -401,6 +462,10 @@ public class Infovoitures extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_ajoubtnActionPerformed
 
+    private void rechefldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rechefldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rechefldActionPerformed
+
     
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -439,6 +504,7 @@ public class Infovoitures extends javax.swing.JFrame {
     private javax.swing.JButton homebtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -451,6 +517,7 @@ public class Infovoitures extends javax.swing.JFrame {
     private javax.swing.JTable listvoiture;
     private javax.swing.JButton logoutbtn;
     private javax.swing.JTextField modbtn;
+    private javax.swing.JTextField rechefld;
     private javax.swing.JTextField supbtn;
     // End of variables declaration//GEN-END:variables
 }

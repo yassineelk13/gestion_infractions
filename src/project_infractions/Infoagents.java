@@ -8,16 +8,56 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
+import javax.swing.RowFilter;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 
 
 public class Infoagents extends javax.swing.JFrame {
-    
+    TableRowSorter<TableModel> rowSorter;
     
     
     public Infoagents() {
         initComponents();
         showTableData();
+        initializeSearch();
+    }
+    
+      private void initializeSearch() {
+        // Création d'un rowSorter pour le modèle de tableau
+        rowSorter = new TableRowSorter<>(listagents.getModel());
+        listagents.setRowSorter(rowSorter);
+        
+        // Ajout d'un DocumentListener au champ de recherche
+        rechefld.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                String text = rechefld.getText();
+                if (text.trim().length() == 0) {
+                    rowSorter.setRowFilter(null);
+                } else {
+                    rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + text));
+                }
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                String text = rechefld.getText();
+                if (text.trim().length() == 0) {
+                    rowSorter.setRowFilter(null);
+                } else {
+                    rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + text));
+                }
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                // Ne sera pas utilisé pour les champs de texte non éditables
+            }
+        });
     }
 
     public void showTableData() {
@@ -95,6 +135,8 @@ public class Infoagents extends javax.swing.JFrame {
         nomutifld = new javax.swing.JTextField();
         passfld = new javax.swing.JTextField();
         modbtn = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        rechefld = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setSize(new java.awt.Dimension(787, 487));
@@ -137,7 +179,7 @@ public class Infoagents extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setText("liste d'Agents :");
-        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 70, 206, 47));
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 50, 206, 47));
 
         listagents.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         listagents.setModel(new javax.swing.table.DefaultTableModel(
@@ -262,6 +304,18 @@ public class Infoagents extends javax.swing.JFrame {
             }
         });
         jPanel2.add(modbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 350, 110, 30));
+
+        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel8.setText("Rechercher :");
+        jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 100, 100, 30));
+
+        rechefld.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        rechefld.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rechefldActionPerformed(evt);
+            }
+        });
+        jPanel2.add(rechefld, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 100, 170, 31));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 790, 440));
 
@@ -508,6 +562,10 @@ public class Infoagents extends javax.swing.JFrame {
         
     }//GEN-LAST:event_modbtnMouseClicked
 
+    private void rechefldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rechefldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rechefldActionPerformed
+
     
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -552,6 +610,7 @@ public class Infoagents extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
@@ -563,6 +622,7 @@ public class Infoagents extends javax.swing.JFrame {
     private javax.swing.JTextField passconfld;
     private javax.swing.JTextField passfld;
     private javax.swing.JTextField prenomfld;
+    private javax.swing.JTextField rechefld;
     private javax.swing.JTextField supbtn;
     // End of variables declaration//GEN-END:variables
 }
