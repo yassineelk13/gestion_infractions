@@ -10,7 +10,11 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-
+import javax.swing.table.TableRowSorter;
+import java.awt.BorderLayout;
+import javax.swing.*;
+import javax.swing.event.*;
+import javax.swing.table.*;
 
 
 
@@ -21,11 +25,49 @@ public class InterAutorite extends javax.swing.JFrame {
     public String[] columnNames = {"Matricule","CIN","Propriétaire","type de voiture","Modèle", "Note de permis"};
     int id_v ;
     DefaultTableModel model = new DefaultTableModel();
+    TableRowSorter<TableModel> rowSorter;
     
     public InterAutorite() {
         initComponents();
         showTableData();
         infoinfractbtn.setVisible(false);
+        initializeSearch();
+    }
+    
+    
+    
+     private void initializeSearch() {
+        // Création d'un rowSorter pour le modèle de tableau
+        rowSorter = new TableRowSorter<>(proprtable.getModel());
+        proprtable.setRowSorter(rowSorter);
+        
+        // Ajout d'un DocumentListener au champ de recherche
+        rechefld.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                String text = rechefld.getText();
+                if (text.trim().length() == 0) {
+                    rowSorter.setRowFilter(null);
+                } else {
+                    rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + text));
+                }
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                String text = rechefld.getText();
+                if (text.trim().length() == 0) {
+                    rowSorter.setRowFilter(null);
+                } else {
+                    rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + text));
+                }
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                // Ne sera pas utilisé pour les champs de texte non éditables
+            }
+        });
     }
 
     public void showTableData() {
@@ -74,13 +116,14 @@ public class InterAutorite extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         proprtable = new javax.swing.JTable();
         rechefld = new javax.swing.JTextField();
-        rechebtn = new javax.swing.JButton();
         loginuser = new javax.swing.JLabel();
-        infoinfractbtn = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         logoutbtn = new javax.swing.JButton();
         homebtn = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
+        rechebtn = new javax.swing.JButton();
+        infoinfractbtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setSize(new java.awt.Dimension(787, 477));
@@ -123,7 +166,7 @@ public class InterAutorite extends javax.swing.JFrame {
             proprtable.getColumnModel().getColumn(5).setResizable(false);
         }
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(29, 205, 590, 250));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(29, 205, 740, 250));
 
         rechefld.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         rechefld.addActionListener(new java.awt.event.ActionListener() {
@@ -131,38 +174,17 @@ public class InterAutorite extends javax.swing.JFrame {
                 rechefldActionPerformed(evt);
             }
         });
-        getContentPane().add(rechefld, new org.netbeans.lib.awtextra.AbsoluteConstraints(29, 156, 546, 31));
+        getContentPane().add(rechefld, new org.netbeans.lib.awtextra.AbsoluteConstraints(29, 156, 170, 31));
 
-        rechebtn.setBackground(new java.awt.Color(0, 204, 102));
-        rechebtn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        rechebtn.setForeground(new java.awt.Color(255, 255, 255));
-        rechebtn.setText("Rechercher");
-        rechebtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rechebtnActionPerformed(evt);
-            }
-        });
-        getContentPane().add(rechebtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(587, 156, 113, 31));
-
-        loginuser.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
+        loginuser.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         loginuser.setText("Bonjour Autorité");
         getContentPane().add(loginuser, new org.netbeans.lib.awtextra.AbsoluteConstraints(29, 88, 251, 32));
 
-        infoinfractbtn.setBackground(new java.awt.Color(0, 204, 102));
-        infoinfractbtn.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
-        infoinfractbtn.setForeground(new java.awt.Color(255, 255, 255));
-        infoinfractbtn.setText("voir les infractions");
-        infoinfractbtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                infoinfractbtnActionPerformed(evt);
-            }
-        });
-        getContentPane().add(infoinfractbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 300, 150, 50));
-
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         logoutbtn.setBackground(new java.awt.Color(255, 51, 51));
-        logoutbtn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        logoutbtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         logoutbtn.setForeground(new java.awt.Color(255, 255, 255));
         logoutbtn.setText("Deconnection");
         logoutbtn.addActionListener(new java.awt.event.ActionListener() {
@@ -170,9 +192,10 @@ public class InterAutorite extends javax.swing.JFrame {
                 logoutbtnActionPerformed(evt);
             }
         });
+        jPanel1.add(logoutbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 20, -1, 44));
 
         homebtn.setBackground(new java.awt.Color(0, 204, 102));
-        homebtn.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        homebtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         homebtn.setForeground(new java.awt.Color(255, 255, 255));
         homebtn.setText("Home");
         homebtn.addActionListener(new java.awt.event.ActionListener() {
@@ -180,40 +203,39 @@ public class InterAutorite extends javax.swing.JFrame {
                 homebtnActionPerformed(evt);
             }
         });
+        jPanel1.add(homebtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 20, 118, 44));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 527, Short.MAX_VALUE)
-                .addComponent(homebtn, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(logoutbtn))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(logoutbtn, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
-                    .addComponent(homebtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-        );
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("SécuriRoute");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, 231, 42));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 790, 80));
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 790, Short.MAX_VALUE)
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 420, Short.MAX_VALUE)
-        );
+        rechebtn.setBackground(new java.awt.Color(0, 204, 102));
+        rechebtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        rechebtn.setForeground(new java.awt.Color(255, 255, 255));
+        rechebtn.setText("Rechercher");
+        rechebtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rechebtnActionPerformed(evt);
+            }
+        });
+        jPanel3.add(rechebtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(217, 116, 120, 31));
+
+        infoinfractbtn.setBackground(new java.awt.Color(0, 204, 102));
+        infoinfractbtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        infoinfractbtn.setForeground(new java.awt.Color(255, 255, 255));
+        infoinfractbtn.setText("voir les infractions");
+        infoinfractbtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                infoinfractbtnActionPerformed(evt);
+            }
+        });
+        jPanel3.add(infoinfractbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(567, 107, 201, 50));
 
         getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 790, 420));
 
@@ -235,6 +257,13 @@ public class InterAutorite extends javax.swing.JFrame {
 
     private void rechebtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rechebtnActionPerformed
         // TODO add your handling code here:
+        /*String recherche = rechefld.getText();
+        
+        for(int i=0;i<proprtable.getRowCount();i++){
+            if(proprtable.getValueAt(i, 1).toString().contains(recherche)){
+                proprtable.setRowSelectionInterval(i, i);
+            }
+        }*/
     }//GEN-LAST:event_rechebtnActionPerformed
 
     private void infoinfractbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_infoinfractbtnActionPerformed
@@ -287,6 +316,7 @@ public class InterAutorite extends javax.swing.JFrame {
         
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+                
                 new InterAutorite().setVisible(true);
             }
         });
@@ -295,6 +325,7 @@ public class InterAutorite extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton homebtn;
     private javax.swing.JButton infoinfractbtn;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;

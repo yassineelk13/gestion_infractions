@@ -30,7 +30,7 @@ public class Login extends javax.swing.JFrame {
         txtUser = new javax.swing.JTextField();
         txtPass = new javax.swing.JPasswordField();
         btnLogin = new javax.swing.JButton();
-        forgotPassLbl = new javax.swing.JLabel();
+        rechercherlbl = new javax.swing.JLabel();
         rolebox = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
 
@@ -71,11 +71,17 @@ public class Login extends javax.swing.JFrame {
         });
         jPanel1.add(btnLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 220, 150, 40));
 
-        forgotPassLbl.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
-        forgotPassLbl.setForeground(new java.awt.Color(255, 255, 255));
-        forgotPassLbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        forgotPassLbl.setText("forgot password?");
-        jPanel1.add(forgotPassLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 280, 150, -1));
+        rechercherlbl.setBackground(new java.awt.Color(0, 0, 0));
+        rechercherlbl.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        rechercherlbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        rechercherlbl.setText("Rechercher votre vehicule ");
+        rechercherlbl.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        rechercherlbl.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                rechercherlblMouseClicked(evt);
+            }
+        });
+        jPanel1.add(rechercherlbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 280, 200, -1));
 
         rolebox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Agent", "Administrateur" }));
         jPanel1.add(rolebox, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 130, 240, 30));
@@ -143,6 +149,12 @@ public class Login extends javax.swing.JFrame {
         System.out.println(user.toString());
     }//GEN-LAST:event_btnLoginActionPerformed
 
+    private void rechercherlblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rechercherlblMouseClicked
+        // TODO add your handling code here:
+        new Recherchervoiture().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_rechercherlblMouseClicked
+
     
     public static void main(String args[]) {
        /* Set the Nimbus look and feel */
@@ -177,12 +189,12 @@ public class Login extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLogin;
-    private javax.swing.JLabel forgotPassLbl;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel rechercherlbl;
     private javax.swing.JComboBox<String> rolebox;
     private javax.swing.JPasswordField txtPass;
     private javax.swing.JTextField txtUser;

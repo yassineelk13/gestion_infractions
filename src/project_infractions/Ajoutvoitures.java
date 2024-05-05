@@ -1,15 +1,9 @@
 package project_infractions;
 
-import java.awt.event.MouseEvent;
-import javax.swing.JOptionPane;
-import java.sql.SQLException;
 import java.sql.*;
-import java.sql.Statement;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.SQLException;
 import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
 
 
 public class Ajoutvoitures extends javax.swing.JFrame {
@@ -144,6 +138,7 @@ public class Ajoutvoitures extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         logoutbtn = new javax.swing.JButton();
         homebtn = new javax.swing.JButton();
+        jLabel9 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         marquefld = new javax.swing.JTextField();
@@ -181,6 +176,7 @@ public class Ajoutvoitures extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         logoutbtn.setBackground(new java.awt.Color(255, 51, 51));
         logoutbtn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -191,6 +187,7 @@ public class Ajoutvoitures extends javax.swing.JFrame {
                 logoutbtnActionPerformed(evt);
             }
         });
+        jPanel1.add(logoutbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 20, -1, 44));
 
         homebtn.setBackground(new java.awt.Color(0, 204, 102));
         homebtn.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
@@ -201,27 +198,14 @@ public class Ajoutvoitures extends javax.swing.JFrame {
                 homebtnActionPerformed(evt);
             }
         });
+        jPanel1.add(homebtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 20, 118, 44));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 527, Short.MAX_VALUE)
-                .addComponent(homebtn, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(logoutbtn))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(logoutbtn, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
-                    .addComponent(homebtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-        );
+        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel9.setText("SécuriRoute");
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, 231, 42));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 790, 80));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -288,11 +272,11 @@ public class Ajoutvoitures extends javax.swing.JFrame {
         jPanel2.add(cinfld, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 240, 150, 30));
 
         jSeparator1.setBackground(new java.awt.Color(153, 153, 153));
-        jPanel2.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, 740, 10));
+        jPanel2.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 740, 10));
 
         typesubmitlbl.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         typesubmitlbl.setText("Modifier voiture :");
-        jPanel2.add(typesubmitlbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 290, 40));
+        jPanel2.add(typesubmitlbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 290, 40));
 
         submitbtn.setBackground(new java.awt.Color(0, 153, 0));
         submitbtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -546,6 +530,7 @@ public class Ajoutvoitures extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;

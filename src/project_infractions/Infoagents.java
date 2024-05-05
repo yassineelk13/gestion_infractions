@@ -76,6 +76,7 @@ public class Infoagents extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         logoutbtn = new javax.swing.JButton();
         homebtn = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -96,9 +97,11 @@ public class Infoagents extends javax.swing.JFrame {
         modbtn = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setSize(new java.awt.Dimension(787, 487));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         logoutbtn.setBackground(new java.awt.Color(255, 51, 51));
         logoutbtn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -109,6 +112,7 @@ public class Infoagents extends javax.swing.JFrame {
                 logoutbtnActionPerformed(evt);
             }
         });
+        jPanel1.add(logoutbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 20, -1, 44));
 
         homebtn.setBackground(new java.awt.Color(0, 204, 102));
         homebtn.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
@@ -119,35 +123,21 @@ public class Infoagents extends javax.swing.JFrame {
                 homebtnActionPerformed(evt);
             }
         });
+        jPanel1.add(homebtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 20, 118, 44));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 527, Short.MAX_VALUE)
-                .addComponent(homebtn, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(logoutbtn))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(logoutbtn, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
-                    .addComponent(homebtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-        );
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel7.setText("SécuriRoute");
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, 231, 42));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 790, 80));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 0, 0));
         jLabel1.setText("liste d'Agents :");
-        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 70, 206, 47));
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 70, 206, 47));
 
         listagents.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         listagents.setModel(new javax.swing.table.DefaultTableModel(
@@ -226,27 +216,22 @@ public class Infoagents extends javax.swing.JFrame {
         jPanel2.add(supbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 390, 120, 30));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 0, 0));
         jLabel2.setText("Confirmer mot de passe :");
         jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 270, 200, 20));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 0, 0));
         jLabel3.setText("Nom :");
-        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 90, 20));
+        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 90, 20));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 0, 0));
         jLabel4.setText("Prenom :");
-        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 90, 20));
+        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 70, 90, 20));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 0, 0));
         jLabel5.setText("Nom d'utilisateur :");
         jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 150, 20));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(255, 0, 0));
         jLabel6.setText("Mot de passe :");
         jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, 140, 20));
 
@@ -254,10 +239,10 @@ public class Infoagents extends javax.swing.JFrame {
         jPanel2.add(passconfld, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 300, 140, 30));
 
         nomfld.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jPanel2.add(nomfld, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 140, 30));
+        jPanel2.add(nomfld, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 140, 30));
 
         prenomfld.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jPanel2.add(prenomfld, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 140, 30));
+        jPanel2.add(prenomfld, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 100, 140, 30));
 
         nomutifld.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jPanel2.add(nomutifld, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, 140, 30));
@@ -340,8 +325,12 @@ public class Infoagents extends javax.swing.JFrame {
     private void supbtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_supbtnMouseClicked
         // TODO add your handling code here:
          if(listagents.getSelectedRow() != -1){
-           
-        int indice = listagents.getSelectedRow(); 
+         
+             
+        int option = JOptionPane.showConfirmDialog(this, "Vous êtes sûr de vouloir supprimer ?", "Supprimer", JOptionPane.YES_NO_OPTION);
+       
+       if (option == JOptionPane.YES_OPTION) {
+            int indice = listagents.getSelectedRow(); 
         String user_name = listagents.getModel().getValueAt(indice, 2).toString();
         try {
             Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/project_infractions", "root", "");
@@ -358,6 +347,10 @@ public class Infoagents extends javax.swing.JFrame {
          } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
+           
+       }
+             
+       
         } 
     }//GEN-LAST:event_supbtnMouseClicked
 
@@ -558,6 +551,7 @@ public class Infoagents extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;

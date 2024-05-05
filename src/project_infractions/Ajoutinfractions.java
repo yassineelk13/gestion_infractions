@@ -88,6 +88,7 @@ public class Ajoutinfractions extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         logoutbtn = new javax.swing.JButton();
         homebtn = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         proprlbl = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -102,12 +103,14 @@ public class Ajoutinfractions extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         lieufld = new javax.swing.JTextField();
         montfld = new javax.swing.JSpinner();
+        jSeparator1 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setSize(new java.awt.Dimension(785, 455));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         logoutbtn.setBackground(new java.awt.Color(255, 51, 51));
         logoutbtn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -118,6 +121,7 @@ public class Ajoutinfractions extends javax.swing.JFrame {
                 logoutbtnActionPerformed(evt);
             }
         });
+        jPanel1.add(logoutbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 20, -1, 44));
 
         homebtn.setBackground(new java.awt.Color(0, 204, 102));
         homebtn.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
@@ -128,45 +132,32 @@ public class Ajoutinfractions extends javax.swing.JFrame {
                 homebtnActionPerformed(evt);
             }
         });
+        jPanel1.add(homebtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 20, 118, 44));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 527, Short.MAX_VALUE)
-                .addComponent(homebtn, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(logoutbtn))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(logoutbtn, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
-                    .addComponent(homebtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-        );
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("SécuriRoute");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, 231, 42));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 790, 80));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        proprlbl.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        proprlbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         proprlbl.setText("bomy");
-        jPanel2.add(proprlbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 60, 170, 30));
+        jPanel2.add(proprlbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 110, 170, 30));
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel5.setText("lieu :");
-        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, 104, 28));
+        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 250, 104, 40));
 
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel6.setText("montant :");
-        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 280, -1, 28));
+        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 300, -1, 40));
 
         ajoutbtn.setBackground(new java.awt.Color(0, 204, 0));
-        ajoutbtn.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        ajoutbtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         ajoutbtn.setForeground(new java.awt.Color(255, 255, 255));
         ajoutbtn.setText("Ajouter");
         ajoutbtn.setOpaque(true);
@@ -175,46 +166,48 @@ public class Ajoutinfractions extends javax.swing.JFrame {
                 ajoutbtnActionPerformed(evt);
             }
         });
-        jPanel2.add(ajoutbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 340, 123, 48));
+        jPanel2.add(ajoutbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 360, 130, 40));
 
         res.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         res.setForeground(new java.awt.Color(0, 153, 51));
         jPanel2.add(res, new org.netbeans.lib.awtextra.AbsoluteConstraints(33, 376, 190, 34));
 
-        listinfrac.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jPanel2.add(listinfrac, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 160, 290, 40));
+        listinfrac.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jPanel2.add(listinfrac, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 190, 230, 40));
 
         jLabel2.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
         jLabel2.setText("Ajouter infraction :");
-        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 289, 42));
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 60, 289, 42));
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setText("type d'infraction :");
-        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, 170, 30));
+        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 190, 160, 40));
 
-        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel7.setText("Propriétaire :");
-        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 170, 30));
+        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 110, 130, 30));
 
-        matrlbl.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        matrlbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         matrlbl.setText("32908A23");
-        jPanel2.add(matrlbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 100, 170, 30));
+        jPanel2.add(matrlbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 150, 170, 30));
 
-        jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel9.setText("Matricule :");
-        jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 170, 30));
+        jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 150, 140, 30));
 
-        lieufld.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        lieufld.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lieufld.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 lieufldActionPerformed(evt);
             }
         });
-        jPanel2.add(lieufld, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 220, 290, 40));
+        jPanel2.add(lieufld, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 250, 230, 40));
 
+        montfld.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         montfld.setModel(new javax.swing.SpinnerNumberModel(0.0d, null, null, 1.0d));
         montfld.setToolTipText("");
-        jPanel2.add(montfld, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 280, 150, 40));
+        jPanel2.add(montfld, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 300, 120, 40));
+        jPanel2.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 100, 620, 10));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 40, 800, 420));
 
@@ -260,6 +253,8 @@ public class Ajoutinfractions extends javax.swing.JFrame {
             pstmt.setInt(7,id_inf);
             pstmt.executeUpdate();
             
+            JOptionPane.showMessageDialog(this, "l'infraction a été ajouté avec succes !", "success", JOptionPane.CLOSED_OPTION);
+
             new Infractions(getId()).setVisible(true);
             this.dispose();
             
@@ -321,6 +316,7 @@ public class Ajoutinfractions extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ajoutbtn;
     private javax.swing.JButton homebtn;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -329,6 +325,7 @@ public class Ajoutinfractions extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTextField lieufld;
     private javax.swing.JComboBox<String> listinfrac;
     private javax.swing.JButton logoutbtn;

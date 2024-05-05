@@ -78,6 +78,7 @@ public class Infovoitures extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         logoutbtn = new javax.swing.JButton();
         homebtn = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -130,6 +131,7 @@ public class Infovoitures extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         logoutbtn.setBackground(new java.awt.Color(255, 51, 51));
         logoutbtn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -140,6 +142,7 @@ public class Infovoitures extends javax.swing.JFrame {
                 logoutbtnActionPerformed(evt);
             }
         });
+        jPanel1.add(logoutbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 20, -1, 44));
 
         homebtn.setBackground(new java.awt.Color(0, 204, 102));
         homebtn.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
@@ -150,27 +153,14 @@ public class Infovoitures extends javax.swing.JFrame {
                 homebtnActionPerformed(evt);
             }
         });
+        jPanel1.add(homebtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 20, 118, 44));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 527, Short.MAX_VALUE)
-                .addComponent(homebtn, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(logoutbtn))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(logoutbtn, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
-                    .addComponent(homebtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-        );
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel7.setText("SécuriRoute");
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, 231, 42));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 790, 80));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -210,6 +200,11 @@ public class Infovoitures extends javax.swing.JFrame {
         ajoubtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 ajoubtnMouseClicked(evt);
+            }
+        });
+        ajoubtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ajoubtnActionPerformed(evt);
             }
         });
         jPanel2.add(ajoubtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 80, 110, 40));
@@ -309,7 +304,10 @@ public class Infovoitures extends javax.swing.JFrame {
         // TODO add your handling code here:
          if(listvoiture.getSelectedRow() != -1){
            
-        int indice = listvoiture.getSelectedRow(); 
+       int option = JOptionPane.showConfirmDialog(this, "Vous êtes sûr de vouloir supprimer ?", "Supprimer", JOptionPane.YES_NO_OPTION);
+       
+       if (option == JOptionPane.YES_OPTION) {
+     int indice = listvoiture.getSelectedRow(); 
         String matricule = listvoiture.getModel().getValueAt(indice, 0).toString();
         try {
             Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/project_infractions", "root", "");
@@ -344,6 +342,9 @@ public class Infovoitures extends javax.swing.JFrame {
          } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
+       } 
+     
+       
         } 
     }//GEN-LAST:event_supbtnMouseClicked
 
@@ -396,6 +397,10 @@ public class Infovoitures extends javax.swing.JFrame {
           this.dispose();
     }//GEN-LAST:event_ajoubtnMouseClicked
 
+    private void ajoubtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ajoubtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ajoubtnActionPerformed
+
     
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -434,6 +439,7 @@ public class Infovoitures extends javax.swing.JFrame {
     private javax.swing.JButton homebtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
