@@ -115,15 +115,17 @@ public class InterAutorite extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         proprtable = new javax.swing.JTable();
-        rechefld = new javax.swing.JTextField();
         loginuser = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         logoutbtn = new javax.swing.JButton();
         homebtn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
-        rechebtn = new javax.swing.JButton();
         infoinfractbtn = new javax.swing.JButton();
+        rechefld = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        exportbtn = new javax.swing.JButton();
+        importbtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setSize(new java.awt.Dimension(787, 477));
@@ -168,14 +170,6 @@ public class InterAutorite extends javax.swing.JFrame {
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(29, 205, 740, 250));
 
-        rechefld.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        rechefld.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rechefldActionPerformed(evt);
-            }
-        });
-        getContentPane().add(rechefld, new org.netbeans.lib.awtextra.AbsoluteConstraints(29, 156, 170, 31));
-
         loginuser.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         loginuser.setText("Bonjour Autorité");
         getContentPane().add(loginuser, new org.netbeans.lib.awtextra.AbsoluteConstraints(29, 88, 251, 32));
@@ -215,17 +209,6 @@ public class InterAutorite extends javax.swing.JFrame {
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        rechebtn.setBackground(new java.awt.Color(0, 204, 102));
-        rechebtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        rechebtn.setForeground(new java.awt.Color(255, 255, 255));
-        rechebtn.setText("Rechercher");
-        rechebtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rechebtnActionPerformed(evt);
-            }
-        });
-        jPanel3.add(rechebtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(217, 116, 120, 31));
-
         infoinfractbtn.setBackground(new java.awt.Color(0, 204, 102));
         infoinfractbtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         infoinfractbtn.setForeground(new java.awt.Color(255, 255, 255));
@@ -236,6 +219,24 @@ public class InterAutorite extends javax.swing.JFrame {
             }
         });
         jPanel3.add(infoinfractbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(567, 107, 201, 50));
+
+        rechefld.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        rechefld.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rechefldActionPerformed(evt);
+            }
+        });
+        jPanel3.add(rechefld, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 120, 170, 31));
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel4.setText("Rechercher :");
+        jPanel3.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, 100, 30));
+
+        exportbtn.setText("exporter");
+        jPanel3.add(exportbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 50, 100, 40));
+
+        importbtn.setText("importer");
+        jPanel3.add(importbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 50, 100, 40));
 
         getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 790, 420));
 
@@ -254,17 +255,6 @@ public class InterAutorite extends javax.swing.JFrame {
         new InterAutorite().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_homebtnActionPerformed
-
-    private void rechebtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rechebtnActionPerformed
-        // TODO add your handling code here:
-        /*String recherche = rechefld.getText();
-        
-        for(int i=0;i<proprtable.getRowCount();i++){
-            if(proprtable.getValueAt(i, 1).toString().contains(recherche)){
-                proprtable.setRowSelectionInterval(i, i);
-            }
-        }*/
-    }//GEN-LAST:event_rechebtnActionPerformed
 
     private void infoinfractbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_infoinfractbtnActionPerformed
         // TODO add your handling code here:
@@ -323,16 +313,18 @@ public class InterAutorite extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton exportbtn;
     private javax.swing.JButton homebtn;
+    private javax.swing.JButton importbtn;
     private javax.swing.JButton infoinfractbtn;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel loginuser;
     private javax.swing.JButton logoutbtn;
     private javax.swing.JTable proprtable;
-    private javax.swing.JButton rechebtn;
     private javax.swing.JTextField rechefld;
     // End of variables declaration//GEN-END:variables
 }

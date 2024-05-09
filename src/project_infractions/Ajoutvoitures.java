@@ -395,7 +395,7 @@ public class Ajoutvoitures extends javax.swing.JFrame {
           }
         }else if(this.type.equals("ajout")){
             
-       String Matricule = matrfld.getText();
+        String Matricule = matrfld.getText();
         String CIN = cinfld.getText();
         String nom = nomcondfld.getText();    
         String prenom = precondfld.getText();

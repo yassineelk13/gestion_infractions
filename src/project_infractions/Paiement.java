@@ -6,9 +6,11 @@ import java.awt.print.PageFormat;
 import java.awt.print.Printable;
 import java.awt.print.PrinterException;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Time;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.logging.Level;
@@ -241,7 +243,7 @@ private boolean validatePaymentDetails() {
      LocalDate date = LocalDate.now(); 
      LocalTime heure = LocalTime.now();
      
-    
+    String type_infr="" ;
      
     if (validatePaymentDetails()) {
         
@@ -256,6 +258,23 @@ private boolean validatePaymentDetails() {
             stmt.setString(1,"payée");
             stmt.executeUpdate();
             
+            
+            String sql2 = "SELECT typeinfraction.nom  FROM infraction inner join typeinfraction on typeinfraction.id = infraction.type_infraction_id where infraction.id='"+this.id_inf+"'";
+            stmt = conn.prepareStatement(sql2);
+            ResultSet rs2 = stmt.executeQuery();
+              
+            
+            
+
+           
+            while(rs2.next()){
+                type_infr = rs2.getString("nom");
+               
+
+            }
+            
+            
+            
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
@@ -263,7 +282,7 @@ private boolean validatePaymentDetails() {
         
         // Si les informations de paiement sont valides, procédez au traitement du paiement
        
-        printxt.setText("********Facture de paiement********\n\n\n\n\nNuméro de Carte: "+cardNumber+""+"\nDate d'expiration : "+expirationDate+"\ncode secret : "+securityCode+"\nDate : "+date+"\nHeure : "+heure+"\n\nMontant payée : "+amount);
+        printxt.setText("********Facture de paiement********\n\n\n\n\n\n"+"type d'nfraction : "+type_infr+"\n"+"Date : "+date+"\nHeure : "+heure+"\n\nMontant payée : "+amount);
          JOptionPane.showMessageDialog(this, "Paiement de " + amount + " € effectué avec succès.", "Confirmation de paiement", JOptionPane.INFORMATION_MESSAGE);
          numcartefld.setText("");
          dateexpfld.setText("");

@@ -20,7 +20,7 @@ public class InterAdmin extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         voitureslbl = new javax.swing.JLabel();
         agentslbl = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setSize(new java.awt.Dimension(787, 477));
@@ -61,6 +61,7 @@ public class InterAdmin extends javax.swing.JFrame {
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 788, 80));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         voitureslbl.setBackground(new java.awt.Color(255, 102, 102));
         voitureslbl.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
@@ -73,6 +74,7 @@ public class InterAdmin extends javax.swing.JFrame {
                 voitureslblMouseClicked(evt);
             }
         });
+        jPanel2.add(voitureslbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 270, 178, 70));
 
         agentslbl.setBackground(new java.awt.Color(255, 102, 102));
         agentslbl.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
@@ -85,28 +87,13 @@ public class InterAdmin extends javax.swing.JFrame {
                 agentslblMouseClicked(evt);
             }
         });
+        jPanel2.add(agentslbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 50, 178, 70));
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(166, Short.MAX_VALUE)
-                .addComponent(agentslbl, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(111, 111, 111)
-                .addComponent(voitureslbl, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(157, 157, 157))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(voitureslbl, javax.swing.GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE)
-            .addComponent(agentslbl, javax.swing.GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE)
-        );
+        jSeparator1.setBackground(new java.awt.Color(51, 51, 51));
+        jSeparator1.setForeground(new java.awt.Color(51, 51, 51));
+        jPanel2.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 183, 800, 10));
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 790, 70));
-
-        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\hp\\Desktop\\bginf.png")); // NOI18N
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 160, 790, 320));
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 790, 410));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -172,9 +159,9 @@ public class InterAdmin extends javax.swing.JFrame {
     private javax.swing.JLabel agentslbl;
     private javax.swing.JButton homebtn;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JButton logoutbtn;
     private javax.swing.JLabel voitureslbl;
     // End of variables declaration//GEN-END:variables
